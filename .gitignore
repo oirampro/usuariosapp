@@ -1,0 +1,17 @@
+# Variables de entorno
+.env
+
+# Node modules
+node_modules/
+
+# json files
+package-lock.json
+package.json
+
+# Logs
+*.log
+npm-debug.log*
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
