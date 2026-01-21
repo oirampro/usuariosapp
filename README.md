@@ -1,6 +1,6 @@
 # Sistema de Gestión de Usuarios con Node.js y SQL Server
 
-Sistema web para gestionar usuarios con frontend HTML/CSS/JavaScript y backend Node.js conectado a SQL Server mediante autenticación de Windows.
+Sistema web para gestionar usuarios con frontend HTML/CSS/JavaScript y backend Node.js + Express conectado a SQL Server mediante autenticación de Windows.
 
 ## 📋 Requisitos Previos
 
@@ -17,6 +17,7 @@ proyecto/
 ├── package-lock.json
 ├── .env
 ├── node_modules/
+│   ├── express/
 │   ├── mssql/
 │   └── dotenv/
 └── public/
@@ -37,6 +38,7 @@ Como no tenemos acceso a internet para descargar dependencias, necesitamos copia
    - Archivo `package-lock.json`
 
 2. **Verifica** que la carpeta `node_modules` contenga al menos:
+   - `express/` (framework web para Node.js)
    - `mssql/` (módulo para conectar con SQL Server)
    - `dotenv/` (módulo para variables de entorno)
 
@@ -74,9 +76,12 @@ Abre una terminal en la carpeta del proyecto y ejecuta:
 
 ```bash
 npm init -y
+npm install express mssql dotenv
 ```
 
-Este comando solo debe ejecutarse **una vez** al configurar el proyecto por primera vez.
+Estos comandos solo deben ejecutarse **una vez** al configurar el proyecto por primera vez.
+
+**Nota:** Si no tienes acceso a internet, asegúrate de haber copiado la carpeta `node_modules` con todas las dependencias necesarias.
 
 ## ▶️ Ejecutar el Servidor
 
@@ -152,9 +157,10 @@ fetch('/api/usuarios/5', {
 
 ## 🔧 Solución de Problemas
 
-### Error: "Cannot find module 'mssql'"
+### Error: "Cannot find module 'express'" o "Cannot find module 'mssql'"
 - Verifica que la carpeta `node_modules` esté en la raíz del proyecto
 - Asegúrate de haber copiado todos los módulos necesarios
+- Si tienes internet, ejecuta: `npm install express mssql dotenv`
 
 ### Error: "Login failed for user"
 - Revisa que las credenciales en `.env` sean correctas
@@ -181,6 +187,7 @@ Ctrl + C
 ## 📝 Notas Adicionales
 
 - Los archivos estáticos (HTML, CSS, JS) deben estar en la carpeta `public/`
+- El servidor usa **Express.js** como framework web
 - El servidor usa autenticación NTLM (Windows Authentication) para SQL Server
 - Las eliminaciones son "soft delete" (marcan `Activo = 0` en vez de borrar)
-- El servidor maneja CORS para permitir peticiones desde el frontend
+- Express maneja automáticamente el parseo de JSON y el servicio de archivos estáticos
