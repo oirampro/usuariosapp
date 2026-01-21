@@ -1,4 +1,5 @@
-const API_URL = 'http://localhost:8080/api';
+// Detecta automáticamente la URL base según desde donde se accede
+const API_URL = `${window.location.origin}/api`;
 
 // Cargar usuarios al iniciar
 document.addEventListener('DOMContentLoaded', () => {
